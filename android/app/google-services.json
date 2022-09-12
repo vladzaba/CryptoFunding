@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "586039017466",
+    "project_id": "cryptofunding-55ecd",
+    "storage_bucket": "cryptofunding-55ecd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586039017466:android:05875a3091e6eab2b2ae43",
+        "android_client_info": {
+          "package_name": "com.example.crypto_funding_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586039017466-8n7ibbv0k66ns2r9vpqb8i8b88ji6gml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMEeoNsZGBGIgQWSZ29OYzWLxY477x1Tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586039017466-8n7ibbv0k66ns2r9vpqb8i8b88ji6gml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
