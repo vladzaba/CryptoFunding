@@ -2,7 +2,6 @@ import 'package:crypto_funding_app/models/funding_item.dart';
 import 'package:crypto_funding_app/pages/item_details_page.dart';
 import 'package:crypto_funding_app/providers/database_provider.dart';
 import 'package:crypto_funding_app/widgets/funding_card.dart';
-import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -37,7 +36,8 @@ class HomePage extends StatelessWidget {
         elevation: 0.0,
       ),
       backgroundColor: const Color(0xff1e2c37),
-      body: CustomRefreshIndicator(
+      body: RefreshIndicator(
+        color: const Color(0xff1e2c37),
         onRefresh: () async {
           db.getItems();
         },
@@ -66,40 +66,6 @@ class HomePage extends StatelessWidget {
                   }),
                 ),
         ),
-        builder: (
-          BuildContext context,
-          Widget child,
-          IndicatorController controller,
-        ) {
-          return AnimatedBuilder(
-            animation: controller,
-            builder: (BuildContext context, _) {
-              return Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  if (!controller.isIdle)
-                    Positioned(
-                      top: 35.0 * controller.value,
-                      child: SizedBox(
-                        height: 30,
-                        width: 30,
-                        child: CircularProgressIndicator(
-                          color: Colors.white,
-                          value: !controller.isLoading
-                              ? controller.value.clamp(0.0, 1.0)
-                              : null,
-                        ),
-                      ),
-                    ),
-                  Transform.translate(
-                    offset: Offset(0, 100.0 * controller.value),
-                    child: child,
-                  ),
-                ],
-              );
-            },
-          );
-        },
       ),
     );
   }
