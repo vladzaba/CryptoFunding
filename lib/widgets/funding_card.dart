@@ -114,42 +114,50 @@ class FundingCardProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ZoomTapAnimation(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: ((context) {
-              return ItemDetailsPage(fundingItem: fundingItem);
-            }),
-          ),
-        );
-      },
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(fundingItem.image),
-        ),
-        title: Text(
-          fundingItem.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Text(
-          '${fundingItem.price}\$',
-          style: const TextStyle(color: Colors.white),
-        ),
-        trailing: IconButton(
-          onPressed: () {
-            deleteFunction();
+    return Column(
+      children: [
+        ZoomTapAnimation(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: ((context) {
+                  return ItemDetailsPage(fundingItem: fundingItem);
+                }),
+              ),
+            );
           },
-          icon: const Icon(
-            Icons.delete,
-            color: Colors.white,
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.transparent,
+              backgroundImage: NetworkImage(fundingItem.image),
+            ),
+            title: Text(
+              fundingItem.name,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            subtitle: Text(
+              '${fundingItem.price}\$',
+              style: const TextStyle(color: Colors.white),
+            ),
+            trailing: IconButton(
+              onPressed: () {
+                deleteFunction();
+              },
+              icon: const Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
-      ),
+        const Divider(
+          color: Color(0xff263742),
+          thickness: 3,
+        ),
+      ],
     );
   }
 }
