@@ -1,6 +1,6 @@
-import 'package:crypto_funding_app/services/authentication_service.dart';
-import 'package:crypto_funding_app/widgets/custom_dialog.dart';
-import 'package:crypto_funding_app/widgets/funding_card.dart';
+import '../services/authentication_service.dart';
+import '../widgets/custom_dialog.dart';
+import '../widgets/funding_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

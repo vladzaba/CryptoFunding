@@ -1,5 +1,5 @@
-import 'package:crypto_funding_app/models/transaction.dart';
-import 'package:crypto_funding_app/widgets/glass_container.dart';
+import '../models/transaction.dart';
+import 'glass_container.dart';
 
 import 'package:flutter/material.dart';
 

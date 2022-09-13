@@ -1,7 +1,7 @@
-import 'package:crypto_funding_app/models/funding_item.dart';
-import 'package:crypto_funding_app/pages/item_details_page.dart';
-import 'package:crypto_funding_app/providers/database_provider.dart';
-import 'package:crypto_funding_app/widgets/funding_card.dart';
+import '../models/funding_item.dart';
+import 'item_details_page.dart';
+import '../providers/database_provider.dart';
+import '../widgets/funding_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';

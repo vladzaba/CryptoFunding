@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto_funding_app/models/funding_item.dart';
+import '../models/funding_item.dart';
 import 'package:flutter/material.dart';
 
 class DatabaseProvider extends ChangeNotifier {

@@ -1,8 +1,8 @@
-import 'package:crypto_funding_app/models/funding_item.dart';
-import 'package:crypto_funding_app/models/transaction.dart';
-import 'package:crypto_funding_app/providers/crypto_fetch_provider.dart';
-import 'package:crypto_funding_app/widgets/crypto_progress_indicator.dart';
-import 'package:crypto_funding_app/widgets/transaction_card.dart';
+import '../models/funding_item.dart';
+import '../models/transaction.dart';
+import '../providers/crypto_fetch_provider.dart';
+import '../widgets/crypto_progress_indicator.dart';
+import '../widgets/transaction_card.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -314,6 +314,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
       }
     }
 
+    // Sort transactions by time
     transactions.sort((a, b) => a.time.compareTo(b.time));
     transactions = transactions.reversed.toList();
 

@@ -1,6 +1,6 @@
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
-import 'package:crypto_funding_app/services/authentication_service.dart';
-import 'package:crypto_funding_app/widgets/custom_form_field.dart';
+import '../services/authentication_service.dart';
+import '../widgets/custom_form_field.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

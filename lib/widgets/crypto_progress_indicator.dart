@@ -1,5 +1,5 @@
-import 'package:crypto_funding_app/models/funding_item.dart';
-import 'package:crypto_funding_app/providers/crypto_fetch_provider.dart';
+import '../models/funding_item.dart';
+import '../providers/crypto_fetch_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';

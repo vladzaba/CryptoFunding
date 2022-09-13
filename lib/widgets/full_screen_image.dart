@@ -15,7 +15,7 @@ class FullScreenImage extends StatelessWidget {
         Navigator.of(context).pop();
       },
       child: Scaffold(
-        backgroundColor: const Color(0xff23303e),
+        backgroundColor: const Color(0xff1e2c37),
         body: Center(
           child: Hero(
             tag: 'imageHero',
