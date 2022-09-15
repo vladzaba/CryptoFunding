@@ -6,6 +6,8 @@ class ShimmerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Shimmer.fromColors(
@@ -87,7 +89,7 @@ class ShimmerDetails extends StatelessWidget {
             ),
             Center(
               child: Container(
-                width: 400,
+                width: deviceWidth * 0.92,
                 height: 24,
                 decoration: const BoxDecoration(
                   color: Colors.white,
