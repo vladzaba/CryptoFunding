@@ -1,4 +1,5 @@
 import 'package:crypto_funding_app/themes/text_styles.dart';
+import 'package:crypto_funding_app/widgets/shimmer_details.dart';
 
 import '../models/funding_item.dart';
 import '../models/transaction.dart';
@@ -81,11 +82,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
             ];
           }),
           body: isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                )
+              ? const ShimmerDetails()
               : Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                   child: MediaQuery.removePadding(
