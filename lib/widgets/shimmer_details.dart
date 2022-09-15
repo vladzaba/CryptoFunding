@@ -10,7 +10,7 @@ class ShimmerDetails extends StatelessWidget {
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Shimmer.fromColors(
         baseColor: const Color(0xff263742),
-        highlightColor: Color.fromARGB(255, 55, 76, 90),
+        highlightColor: const Color.fromARGB(255, 55, 76, 90),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
