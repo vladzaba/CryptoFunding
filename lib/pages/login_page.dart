@@ -1,7 +1,8 @@
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
+import 'package:crypto_funding_app/widgets/custom_snackbar.dart';
 import '../services/authentication_service.dart';
+import '../themes/text_styles.dart';
 import '../widgets/custom_form_field.dart';
-import 'package:another_flushbar/flushbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,6 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff1e2c37),
-        elevation: 0.0,
       ),
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff1e2c37),
@@ -34,10 +34,7 @@ class LoginPage extends StatelessWidget {
               const Text(
                 'Login',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                ),
+                style: TextStyles.titleLarge,
               ),
               const SizedBox(
                 height: 50,
@@ -105,17 +102,10 @@ class LoginPage extends StatelessWidget {
                         if (FirebaseAuth.instance.currentUser != null) {
                           Navigator.of(context).pushReplacementNamed('/home');
                         } else {
-                          Flushbar(
-                            flushbarPosition: FlushbarPosition.TOP,
-                            backgroundColor:
-                                const Color(0xff263742),
-                            messageText: const Center(
-                                child: Text(
-                              'User with this email and password doesn\'t exist',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                            duration: const Duration(seconds: 2),
-                          ).show(context);
+                          CustomSnackBar(
+                            text:
+                                'User with this email and password doesn\'t exist',
+                          ).showSnackbar(context);
                         }
                       },
                     );
@@ -123,11 +113,7 @@ class LoginPage extends StatelessWidget {
                 },
                 child: const Text(
                   'Login',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: TextStyles.buttonTextStyle,
                 ),
               ),
               const SizedBox(

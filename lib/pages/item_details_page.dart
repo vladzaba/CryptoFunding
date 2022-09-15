@@ -1,3 +1,5 @@
+import 'package:crypto_funding_app/themes/text_styles.dart';
+
 import '../models/funding_item.dart';
 import '../models/transaction.dart';
 import '../providers/crypto_fetch_provider.dart';
@@ -121,18 +123,11 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                               children: [
                                 Text(
                                   widget.fundingItem.name,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 28,
-                                  ),
+                                  style: TextStyles.titleMedium,
                                 ),
                                 Text(
                                   '${widget.fundingItem.price}\$',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
+                                  style: TextStyles.bodyMedium,
                                 ),
                               ],
                             ),
@@ -146,10 +141,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                   ),
                                   Text(
                                     widget.fundingItem.description,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                    ),
+                                    style: TextStyles.bodySmall,
                                     textAlign: TextAlign.center,
                                   ),
                                   const SizedBox(
@@ -163,53 +155,35 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                         ),
                         const Text(
                           'ETH Address',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyles.titleMedium,
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         SelectableText(
                           widget.fundingItem.ethAddress,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                          style: TextStyles.bodyMedium,
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         const Text(
                           'BSC Address',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyles.titleMedium,
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         SelectableText(
                           widget.fundingItem.bscAddress,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                          style: TextStyles.bodyMedium,
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         const Text(
                           'Progress',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyles.titleMedium,
                         ),
                         const SizedBox(
                           height: 10,
@@ -223,41 +197,28 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                         ),
                         Text(
                           'Collected in BNB: ${fetchProvider.bnbBal.toStringAsFixed(2)} ≈ ${(fetchProvider.bnbBal * fetchProvider.bnbPrice).toStringAsFixed(2)}\$',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                          style: TextStyles.bodyMedium,
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         Text(
                           'Collected in ETH: ${fetchProvider.ethBal.toStringAsFixed(2)} ≈ ${(fetchProvider.ethBal * fetchProvider.ethPrice).toStringAsFixed(2)}\$',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                          style: TextStyles.bodyMedium,
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         Text(
                           'Total Collected: ${fetchProvider.totalBalance.toStringAsFixed(2)}\$',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                          style: TextStyles.bodyMedium,
                         ),
                         const SizedBox(
                           height: 40,
                         ),
                         const Text(
                           'Transactions',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyles.titleMedium,
                         ),
                         ListView.builder(
                           itemCount: transactions.length,

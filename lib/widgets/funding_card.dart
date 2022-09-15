@@ -1,3 +1,5 @@
+import 'package:crypto_funding_app/themes/text_styles.dart';
+
 import '../models/funding_item.dart';
 import '../pages/item_details_page.dart';
 import 'crypto_progress_indicator.dart';
@@ -27,19 +29,11 @@ class FundingCard extends StatelessWidget {
             children: [
               Text(
                 fundingItem.creator,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+                style: TextStyles.titleSmall,
               ),
               Text(
                 timeago.format(fundingItem.whenAdded),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+                style: TextStyles.titleSmall,
               ),
             ],
           ),
@@ -67,21 +61,14 @@ class FundingCard extends StatelessWidget {
                     children: [
                       Text(
                         fundingItem.name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                        style: TextStyles.titleSmall,
                       ),
                       const SizedBox(
                         height: 5,
                       ),
                       Text(
                         '${fundingItem.price}\$',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
+                        style: TextStyles.bodyMedium,
                       ),
                       const SizedBox(
                         height: 10,

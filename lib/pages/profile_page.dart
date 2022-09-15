@@ -1,3 +1,5 @@
+import 'package:crypto_funding_app/themes/text_styles.dart';
+
 import '../services/authentication_service.dart';
 import '../widgets/custom_dialog.dart';
 import '../widgets/funding_card.dart';
@@ -60,8 +62,6 @@ class ProfilePage extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        backgroundColor: const Color(0xff263742),
-        elevation: 0.0,
       ),
       body: fundingList.isNotEmpty
           ? ListView.builder(
@@ -81,7 +81,9 @@ class ProfilePage extends StatelessWidget {
                             Navigator.of(context).pop();
                             db.deleteItem(fundingList[index]);
                             cloudStorage.deleteImageFromStorage(
-                                auth.uid, fundingList[index].id);
+                              auth.uid,
+                              fundingList[index].id,
+                            );
                           },
                         );
                       },
@@ -93,7 +95,7 @@ class ProfilePage extends StatelessWidget {
           : const Center(
               child: Text(
                 'No items were found',
-                style: TextStyle(color: Colors.white),
+                style: TextStyles.bodyMedium,
               ),
             ),
     );

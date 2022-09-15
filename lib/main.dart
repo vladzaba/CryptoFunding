@@ -1,3 +1,5 @@
+import 'package:crypto_funding_app/themes/custom_theme.dart';
+
 import 'pages/adding_item_page.dart';
 
 import 'pages/login_page.dart';
@@ -19,7 +21,8 @@ import 'pages/profile_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+  );
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -32,19 +35,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<DatabaseProvider>(
-          create: (context) => DatabaseProvider(),
-        ),
-      ],
+    return ChangeNotifierProvider<DatabaseProvider>(
+      create: (context) => DatabaseProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Arcade',
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-        ),
+        theme: CustomTheme.appTheme,
         home: FirebaseAuth.instance.currentUser == null
             ? const LoginPage()
             : const HomePage(),

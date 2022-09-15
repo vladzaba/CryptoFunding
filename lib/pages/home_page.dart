@@ -17,7 +17,6 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff263742),
         title: const Text('Fundings'),
         leading: IconButton(
           onPressed: () {
@@ -33,7 +32,6 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.add_circle),
           ),
         ],
-        elevation: 0.0,
       ),
       backgroundColor: const Color(0xff1e2c37),
       body: RefreshIndicator(

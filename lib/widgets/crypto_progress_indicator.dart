@@ -18,15 +18,11 @@ class CryptoProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => CryptoFetchProvider(
-            bscAddress: fundingItem.bscAddress,
-            ethAddress: fundingItem.ethAddress,
-          ),
-        )
-      ],
+    return ChangeNotifierProvider(
+      create: (_) => CryptoFetchProvider(
+        bscAddress: fundingItem.bscAddress,
+        ethAddress: fundingItem.ethAddress,
+      ),
       child: buildUI(),
     );
   }
@@ -38,7 +34,7 @@ class CryptoProgressIndicator extends StatelessWidget {
         double percent = getPercent(fetchProvider.totalBalance);
 
         return fetchProvider.isLoading
-            ?  SizedBox(
+            ? SizedBox(
                 width: width,
                 child: const Center(
                   child: SizedBox(
