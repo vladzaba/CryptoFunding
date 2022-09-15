@@ -188,6 +188,8 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                         CryptoProgressIndicator(
                           fundingItem: widget.fundingItem,
                           width: deviceWidth * 0.96,
+                          baseColor: const Color(0xff263742),
+                          highlightColor: const Color.fromARGB(255, 55, 76, 90),
                         ),
                         const SizedBox(
                           height: 20,

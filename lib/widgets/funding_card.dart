@@ -76,6 +76,8 @@ class FundingCard extends StatelessWidget {
                       CryptoProgressIndicator(
                         width: 180,
                         fundingItem: fundingItem,
+                        baseColor: const Color.fromARGB(255, 86, 94, 103),
+                        highlightColor: const Color.fromARGB(255, 141, 147, 154),
                       ),
                     ],
                   ),

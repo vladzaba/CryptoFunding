@@ -90,7 +90,7 @@ class ShimmerDetails extends StatelessWidget {
             Center(
               child: Container(
                 width: deviceWidth * 0.92,
-                height: 24,
+                height: 20,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(
@@ -179,6 +179,45 @@ class ShimmerDetails extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ShimmerCryptoProgressIndicator extends StatelessWidget {
+  final double width;
+  final Color baseColor;
+  final Color highlightColor;
+
+  const ShimmerCryptoProgressIndicator({
+    Key? key,
+    required this.width,
+    required this.baseColor,
+    required this.highlightColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+        child: Shimmer.fromColors(
+          baseColor: baseColor,
+          highlightColor: highlightColor,
+          child: Center(
+            child: Container(
+              width: width,
+              height: 20,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(14),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

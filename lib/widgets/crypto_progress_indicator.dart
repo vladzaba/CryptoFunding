@@ -1,3 +1,5 @@
+import 'package:crypto_funding_app/widgets/shimmer_details.dart';
+
 import '../models/funding_item.dart';
 import '../providers/crypto_fetch_provider.dart';
 
@@ -10,10 +12,15 @@ class CryptoProgressIndicator extends StatelessWidget {
   final FundingItem fundingItem;
   final double width;
 
+  final Color baseColor;
+  final Color highlightColor;
+
   const CryptoProgressIndicator({
     Key? key,
     required this.fundingItem,
     required this.width,
+    required this.baseColor,
+    required this.highlightColor,
   }) : super(key: key);
 
   @override
@@ -34,18 +41,10 @@ class CryptoProgressIndicator extends StatelessWidget {
         double percent = getPercent(fetchProvider.totalBalance);
 
         return fetchProvider.isLoading
-            ? SizedBox(
+            ? ShimmerCryptoProgressIndicator(
                 width: width,
-                child: const Center(
-                  child: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                baseColor: baseColor,
+                highlightColor: highlightColor,
               )
             : LinearPercentIndicator(
                 animation: true,
