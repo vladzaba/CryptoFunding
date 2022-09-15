@@ -35,7 +35,8 @@ class HomePage extends StatelessWidget {
       ),
       backgroundColor: const Color(0xff1e2c37),
       body: RefreshIndicator(
-        color: const Color(0xff1e2c37),
+        backgroundColor: const Color(0xff263742),
+        color: Colors.white,
         onRefresh: () async {
           db.getItems();
         },
