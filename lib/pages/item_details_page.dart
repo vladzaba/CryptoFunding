@@ -1,5 +1,5 @@
-import 'package:crypto_funding_app/themes/text_styles.dart';
-import 'package:crypto_funding_app/widgets/shimmer_details.dart';
+import '../themes/text_styles.dart';
+import '../widgets/shimmer_details.dart';
 
 import '../models/funding_item.dart';
 import '../models/transaction.dart';

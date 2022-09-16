@@ -1,5 +1,6 @@
-import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
-import 'package:crypto_funding_app/widgets/custom_snackbar.dart';
+import '../widgets/animated_button.dart';
+import '../widgets/custom_snackbar.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../themes/text_styles.dart';
 import '../widgets/custom_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +19,9 @@ class RegisterPage extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
     final TextEditingController repeatPasswordController =
         TextEditingController();
+
+    final RoundedLoadingButtonController buttonController =
+        RoundedLoadingButtonController();
 
     final AuthenticationService auth = AuthenticationService();
 
@@ -90,49 +94,34 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              ArgonButton(
-                height: 50,
-                width: 500,
-                borderRadius: 5.0,
-                color: const Color(0xFF59b7b9),
-                loader: Container(
-                  padding: const EdgeInsets.all(10),
-                  child: const CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                ),
-                onTap: (startLoading, stopLoading, btnState) async {
-                  if (btnState == ButtonState.Idle) {
-                    startLoading();
-
-                    if (!formKey.currentState!.validate()) {
-                      stopLoading();
-                      return;
-                    }
-
-                    await auth
-                        .registerUserUsingEmailAndPassword(
-                      emailController.text,
-                      passwordController.text,
-                    )
-                        .then(
-                      (value) {
-                        stopLoading();
-                        if (FirebaseAuth.instance.currentUser != null) {
-                          Navigator.of(context).pushReplacementNamed('/home');
-                        } else {
-                          CustomSnackBar(
-                            text: 'User with email already exist',
-                          ).showSnackbar(context);
-                        }
-                      },
-                    );
+              AnimatedButton(
+                text: 'Sign Up',
+                buttonController: buttonController,
+                onPressed: () async {
+                  if (!formKey.currentState!.validate()) {
+                    buttonController.error();
+                    return;
                   }
+
+                  await auth
+                      .registerUserUsingEmailAndPassword(
+                    emailController.text,
+                    passwordController.text,
+                  )
+                      .then(
+                    (value) {
+                      if (FirebaseAuth.instance.currentUser != null) {
+                        buttonController.success();
+                        Navigator.of(context).pushReplacementNamed('/home');
+                      } else {
+                        buttonController.error();
+                        CustomSnackBar(
+                          text: 'User with email already exist',
+                        ).showSnackbar(context);
+                      }
+                    },
+                  );
                 },
-                child: const Text(
-                  'Sign Up',
-                  style: TextStyles.buttonTextStyle,
-                ),
               ),
               const SizedBox(
                 height: 60,

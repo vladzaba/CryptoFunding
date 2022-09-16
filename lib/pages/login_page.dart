@@ -1,5 +1,6 @@
-import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
-import 'package:crypto_funding_app/widgets/custom_snackbar.dart';
+import '../widgets/animated_button.dart';
+import '../widgets/custom_snackbar.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../services/authentication_service.dart';
 import '../themes/text_styles.dart';
 import '../widgets/custom_form_field.dart';
@@ -15,6 +16,9 @@ class LoginPage extends StatelessWidget {
 
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+
+    final RoundedLoadingButtonController buttonController =
+        RoundedLoadingButtonController();
 
     final AuthenticationService auth = AuthenticationService();
 
@@ -71,50 +75,35 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              ArgonButton(
-                height: 50,
-                width: 350,
-                borderRadius: 5.0,
-                color: const Color(0xFF59b7b9),
-                loader: Container(
-                  padding: const EdgeInsets.all(10),
-                  child: const CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                ),
-                onTap: (startLoading, stopLoading, btnState) async {
-                  if (btnState == ButtonState.Idle) {
-                    startLoading();
-
-                    if (!formKey.currentState!.validate()) {
-                      stopLoading();
-                      return;
-                    }
-
-                    await auth
-                        .loginUsingEmailAndPassword(
-                      emailController.text,
-                      passwordController.text,
-                    )
-                        .then(
-                      (value) {
-                        stopLoading();
-                        if (FirebaseAuth.instance.currentUser != null) {
-                          Navigator.of(context).pushReplacementNamed('/home');
-                        } else {
-                          CustomSnackBar(
-                            text:
-                                'User with this email and password doesn\'t exist',
-                          ).showSnackbar(context);
-                        }
-                      },
-                    );
+              AnimatedButton(
+                text: 'Login',
+                buttonController: buttonController,
+                onPressed: () async {
+                  if (!formKey.currentState!.validate()) {
+                    buttonController.error();
+                    return;
                   }
+
+                  await auth
+                      .loginUsingEmailAndPassword(
+                    emailController.text,
+                    passwordController.text,
+                  )
+                      .then(
+                    (value) {
+                      if (FirebaseAuth.instance.currentUser != null) {
+                        buttonController.success();
+                        Navigator.of(context).pushReplacementNamed('/home');
+                      } else {
+                        buttonController.error();
+                        CustomSnackBar(
+                          text:
+                              'User with this email and password doesn\'t exist',
+                        ).showSnackbar(context);
+                      }
+                    },
+                  );
                 },
-                child: const Text(
-                  'Login',
-                  style: TextStyles.buttonTextStyle,
-                ),
               ),
               const SizedBox(
                 height: 60,

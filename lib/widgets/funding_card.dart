@@ -1,4 +1,4 @@
-import 'package:crypto_funding_app/themes/text_styles.dart';
+import '../themes/text_styles.dart';
 
 import '../models/funding_item.dart';
 import '../pages/item_details_page.dart';

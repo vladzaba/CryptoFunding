@@ -1,4 +1,4 @@
-import 'package:crypto_funding_app/widgets/shimmer_details.dart';
+import 'shimmer_details.dart';
 
 import '../models/funding_item.dart';
 import '../providers/crypto_fetch_provider.dart';

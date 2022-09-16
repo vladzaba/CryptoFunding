@@ -1,4 +1,4 @@
-import 'package:crypto_funding_app/themes/custom_theme.dart';
+import 'themes/custom_theme.dart';
 
 import 'pages/adding_item_page.dart';
 

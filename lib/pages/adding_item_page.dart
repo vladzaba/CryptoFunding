@@ -2,12 +2,12 @@
 
 import 'dart:io';
 
-import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:crypto_funding_app/models/funding_item.dart';
 import 'package:crypto_funding_app/services/authentication_service.dart';
 import 'package:crypto_funding_app/providers/database_provider.dart';
 import 'package:crypto_funding_app/services/cloud_storage_service.dart';
 import 'package:crypto_funding_app/themes/text_styles.dart';
+import 'package:crypto_funding_app/widgets/animated_button.dart';
 
 import 'package:crypto_funding_app/widgets/custom_form_field.dart';
 import 'package:crypto_funding_app/widgets/custom_snackbar.dart';
@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class AddingItemPage extends StatefulWidget {
@@ -33,6 +34,9 @@ class _AddingItemPageState extends State<AddingItemPage> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController ethController = TextEditingController();
   final TextEditingController bscController = TextEditingController();
+
+  final RoundedLoadingButtonController buttonController =
+      RoundedLoadingButtonController();
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
@@ -216,71 +220,54 @@ class _AddingItemPageState extends State<AddingItemPage> {
               const SizedBox(
                 height: 50,
               ),
-              ArgonButton(
-                height: 50,
-                width: 350,
-                borderRadius: 5.0,
-                color: const Color(0xFF59b7b9),
-                loader: Container(
-                  padding: const EdgeInsets.all(10),
-                  child: const CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                ),
-                onTap: (startLoading, stopLoading, btnState) async {
-                  if (btnState == ButtonState.Idle) {
-                    startLoading();
-
-                    if (!formKey.currentState!.validate()) {
-                      stopLoading();
-                      return;
-                    }
-
-                    if (image == null) {
-                      stopLoading();
-                      CustomSnackBar(
-                        text: 'Image field should not be empty',
-                      ).showSnackbar(context);
-                      return;
-                    }
-
-                    String id =
-                        DateTime.now().millisecondsSinceEpoch.toString();
-
-                    String? imageURL = await cloudStorage
-                        .saveUserImageToStorage(auth.uid, image!, id);
-
-                    final fundingItem = FundingItem(
-                      id: id,
-                      name: titleController.text,
-                      description: descriptionController.text,
-                      creator: firebaseAuth.currentUser!.email!,
-                      image: imageURL!,
-                      price: doubleWithoutDecimalToInt(
-                        double.parse(
-                          double.parse(priceController.text).toStringAsFixed(2),
-                        ),
-                      ),
-                      bscAddress: bscController.text,
-                      ethAddress: ethController.text,
-                      whenAdded: DateTime.now(),
-                    );
-
-                    db.addItem(
-                      fundingItem.toMap(),
-                    );
-
-                    db.getItems();
-
-                    Navigator.of(context).pop();
-
-                    stopLoading();
+              AnimatedButton(
+                text: 'Add',
+                buttonController: buttonController,
+                onPressed: () async {
+                  if (!formKey.currentState!.validate()) {
+                    buttonController.error();
+                    return;
                   }
+
+                  if (image == null) {
+                    buttonController.error();
+                    CustomSnackBar(
+                      text: 'Image field should not be empty',
+                    ).showSnackbar(context);
+                    return;
+                  }
+
+                  String id = DateTime.now().millisecondsSinceEpoch.toString();
+
+                  String? imageURL = await cloudStorage.saveUserImageToStorage(
+                      auth.uid, image!, id);
+
+                  final fundingItem = FundingItem(
+                    id: id,
+                    name: titleController.text,
+                    description: descriptionController.text,
+                    creator: firebaseAuth.currentUser!.email!,
+                    image: imageURL!,
+                    price: doubleWithoutDecimalToInt(
+                      double.parse(
+                        double.parse(priceController.text).toStringAsFixed(2),
+                      ),
+                    ),
+                    bscAddress: bscController.text,
+                    ethAddress: ethController.text,
+                    whenAdded: DateTime.now(),
+                  );
+
+                  db.addItem(
+                    fundingItem.toMap(),
+                  );
+
+                  db.getItems();
+
+                  buttonController.success();
+
+                  Navigator.of(context).pop();
                 },
-                child: const Text(
-                  'Add',
-                  style: TextStyles.buttonTextStyle,
-                ),
               ),
             ],
           ),

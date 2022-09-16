@@ -1,10 +1,11 @@
-import '../models/funding_item.dart';
-import 'item_details_page.dart';
-import '../providers/database_provider.dart';
-import '../widgets/funding_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+
+import '../models/funding_item.dart';
+import '../providers/database_provider.dart';
+import '../widgets/funding_card.dart';
+import 'item_details_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
