@@ -219,18 +219,20 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                           'Transactions',
                           style: TextStyles.titleMedium,
                         ),
-                        ListView.builder(
-                          itemCount: transactions.length,
-                          itemBuilder: (context, index) {
-                            return TransactionCard(
-                              transaction: transactions[index],
-                              ethPrice: fetchProvider.ethPrice,
-                              bnbPrice: fetchProvider.bnbPrice,
-                            );
-                          },
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                        ),
+                        transactions.isNotEmpty
+                            ? ListView.builder(
+                                itemCount: transactions.length,
+                                itemBuilder: (context, index) {
+                                  return TransactionCard(
+                                    transaction: transactions[index],
+                                    ethPrice: fetchProvider.ethPrice,
+                                    bnbPrice: fetchProvider.bnbPrice,
+                                  );
+                                },
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                              )
+                            : const NoTransactions(),
                       ],
                     ),
                   ),

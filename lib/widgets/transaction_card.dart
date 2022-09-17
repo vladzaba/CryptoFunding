@@ -1,3 +1,5 @@
+import 'package:crypto_funding_app/themes/text_styles.dart';
+
 import '../models/transaction.dart';
 import 'glass_container.dart';
 
@@ -62,8 +64,8 @@ class TransactionCard extends StatelessWidget {
                               )
                             : const CircleAvatar(
                                 backgroundColor: Colors.transparent,
-                                backgroundImage:
-                                    AssetImage('assets/images/bsc_logo.svg.png'),
+                                backgroundImage: AssetImage(
+                                    'assets/images/bsc_logo.svg.png'),
                                 radius: 16,
                               ),
                         Row(
@@ -117,5 +119,22 @@ class TransactionCard extends StatelessWidget {
     } else {
       throw Exception('Something wrong happened');
     }
+  }
+}
+
+class NoTransactions extends StatelessWidget {
+  const NoTransactions({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 200,
+      child:  Center(
+        child: Text(
+          'No transations were found',
+          style: TextStyles.bodyMedium,
+        ),
+      ),
+    );
   }
 }
