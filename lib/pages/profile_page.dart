@@ -64,33 +64,46 @@ class ProfilePage extends StatelessWidget {
         ),
       ),
       body: fundingList.isNotEmpty
-          ? ListView.builder(
-              itemCount: fundingList.length,
-              itemBuilder: ((context, index) {
-                return FundingCardProfile(
-                  fundingItem: fundingList[index],
-                  deleteFunction: () {
-                    return showDialog(
-                      context: context,
-                      builder: (context) {
-                        return CustomDialog(
-                          contentText: 'Are you sure you want to delete',
-                          itemName: '\n${fundingList[index].name}',
-                          actionText: 'Delete',
-                          onTapFunction: () {
-                            Navigator.of(context).pop();
-                            db.deleteItem(fundingList[index]);
-                            cloudStorage.deleteImageFromStorage(
-                              auth.uid,
-                              fundingList[index].id,
+          ? ListView(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Your Items',
+                    style: TextStyles.titleMedium,
+                  ),
+                ),
+                ListView.builder(
+                  itemCount: fundingList.length,
+                  itemBuilder: ((context, index) {
+                    return FundingCardProfile(
+                      fundingItem: fundingList[index],
+                      deleteFunction: () {
+                        return showDialog(
+                          context: context,
+                          builder: (context) {
+                            return CustomDialog(
+                              contentText: 'Are you sure you want to delete',
+                              itemName: '\n${fundingList[index].name}',
+                              actionText: 'Delete',
+                              onTapFunction: () {
+                                Navigator.of(context).pop();
+                                db.deleteItem(fundingList[index]);
+                                cloudStorage.deleteImageFromStorage(
+                                  auth.uid,
+                                  fundingList[index].id,
+                                );
+                              },
                             );
                           },
                         );
                       },
                     );
-                  },
-                );
-              }),
+                  }),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                ),
+              ],
             )
           : const Center(
               child: Text(
