@@ -82,6 +82,29 @@ class DatabaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateStatus(FundingItem item) async {
+    late String dId;
+
+    await db
+        .collection('items')
+        .where('id', isEqualTo: item.id)
+        .get()
+        .then((value) {
+      dId = value.docs.first.id;
+    });
+
+    await db.collection('items').doc(dId).update({'is_active': false});
+  }
+
+  List<FundingItem> get activeItems {
+    return _fundingList.where((element) => element.isActive == true).toList();
+  }
+
+  List<FundingItem> get finishedItems {
+    return _fundingList.where((element) => element.isActive == false).toList();
+  }
+
+  // API can handle only 5 requests per second
   int _index = 0;
 
   final List<FundingItem> _fundingList = [];
@@ -90,7 +113,6 @@ class DatabaseProvider extends ChangeNotifier {
     return _fundingList;
   }
 
-  // API can handle only 5 requests per second
   startTimer() {
     if (fundingList.length >= items.length) {
       _fundingList.clear();

@@ -1,11 +1,9 @@
+import '../widgets/fundings_list_buider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import '../models/funding_item.dart';
 import '../providers/database_provider.dart';
-import '../widgets/funding_card.dart';
-import 'item_details_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,57 +12,63 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var db = context.watch<DatabaseProvider>();
 
-    List<FundingItem> fundingList = db.fundingList;
+    List<FundingItem> activeList = db.activeItems;
+    List<FundingItem> finishedList = db.finishedItems;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Fundings'),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed('/profile');
-          },
-          icon: const Icon(Icons.account_circle),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed('/add_item');
-            },
-            icon: const Icon(Icons.add_circle),
-          ),
-        ],
-      ),
-      backgroundColor: const Color(0xff1e2c37),
-      body: RefreshIndicator(
-        backgroundColor: const Color(0xff263742),
-        color: Colors.white,
-        onRefresh: () async {
-          db.getItems();
-        },
-        child: Center(
-          child: db.isLoading
-              ? const CircularProgressIndicator(
-                  color: Colors.white,
-                )
-              : ListView.builder(
-                  itemCount: fundingList.length,
-                  itemBuilder: ((context, index) {
-                    return ZoomTapAnimation(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => ItemDetailsPage(
-                              fundingItem: fundingList[index],
-                            ),
-                          ),
-                        );
-                      },
-                      child: FundingCard(
-                        fundingItem: fundingList[index],
-                      ),
-                    );
-                  }),
+      backgroundColor: const Color(0xff263742),
+      body: NestedScrollView(
+        headerSliverBuilder: ((context, innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              title: const Text('Active'),
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/profile');
+                },
+                icon: const Icon(Icons.account_circle),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/add_item');
+                  },
+                  icon: const Icon(Icons.add_circle),
                 ),
+              ],
+            ),
+          ];
+        }),
+        body: MediaQuery.removePadding(
+          removeTop: true,
+          context: context,
+          child: RefreshIndicator(
+            backgroundColor: const Color(0xff263742),
+            color: Colors.white,
+            onRefresh: () async {
+              db.getItems();
+            },
+            child: Center(
+              child: db.isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                  : ListView(
+                      children: [
+                        FundingsListBuilder(
+                          fundingsList: activeList,
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        FundingsListBuilder(
+                          fundingsList: finishedList,
+                          title: 'Finished',
+                        ),
+                      ],
+                    ),
+            ),
+          ),
         ),
       ),
     );

@@ -1,4 +1,4 @@
-import 'package:crypto_funding_app/themes/text_styles.dart';
+import '../themes/text_styles.dart';
 
 import '../models/transaction.dart';
 import 'glass_container.dart';

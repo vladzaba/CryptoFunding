@@ -1,12 +1,12 @@
-import '../widgets/animated_button.dart';
-import '../widgets/custom_snackbar.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
-import '../themes/text_styles.dart';
-import '../widgets/custom_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 import '../services/authentication_service.dart';
+import '../themes/text_styles.dart';
+import '../widgets/animated_button.dart';
+import '../widgets/custom_form_field.dart';
+import '../widgets/custom_snackbar.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);

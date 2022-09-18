@@ -1,3 +1,5 @@
+import '../providers/database_provider.dart';
+
 import 'shimmer_details.dart';
 
 import '../models/funding_item.dart';
@@ -38,7 +40,13 @@ class CryptoProgressIndicator extends StatelessWidget {
     return Builder(
       builder: (context) {
         var fetchProvider = context.watch<CryptoFetchProvider>();
+        var db = context.watch<DatabaseProvider>();
+
         double percent = getPercent(fetchProvider.totalBalance);
+
+        if (percent >= 100) {
+          db.updateStatus(fundingItem);
+        }
 
         return fetchProvider.isLoading
             ? ShimmerCryptoProgressIndicator(
@@ -52,14 +60,12 @@ class CryptoProgressIndicator extends StatelessWidget {
                 barRadius: const Radius.circular(12),
                 width: width,
                 lineHeight: 20.0,
-                percent: fetchProvider.totalBalance < fundingItem.price
-                    ? percent / 100
-                    : 1,
+                percent: (percent / 100) < 1 ? percent / 100 : 1,
                 backgroundColor: Colors.grey,
-                center: fetchProvider.totalBalance < fundingItem.price
+                center: fundingItem.isActive
                     ? Text('$percent%')
                     : const Text('Finished'),
-                progressColor: fetchProvider.totalBalance < fundingItem.price
+                progressColor: fundingItem.isActive
                     ? Colors.greenAccent
                     : Colors.orangeAccent,
               );
@@ -69,6 +75,7 @@ class CryptoProgressIndicator extends StatelessWidget {
 
   double getPercent(double totalBalance) {
     String p = ((100 * totalBalance) / fundingItem.price).toStringAsFixed(2);
+
     return double.parse(p);
   }
 }

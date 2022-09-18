@@ -6,7 +6,6 @@ import 'package:crypto_funding_app/models/funding_item.dart';
 import 'package:crypto_funding_app/services/authentication_service.dart';
 import 'package:crypto_funding_app/providers/database_provider.dart';
 import 'package:crypto_funding_app/services/cloud_storage_service.dart';
-import 'package:crypto_funding_app/themes/text_styles.dart';
 import 'package:crypto_funding_app/widgets/animated_button.dart';
 
 import 'package:crypto_funding_app/widgets/custom_form_field.dart';
@@ -255,6 +254,7 @@ class _AddingItemPageState extends State<AddingItemPage> {
                     ),
                     bscAddress: bscController.text,
                     ethAddress: ethController.text,
+                    isActive: true,
                     whenAdded: DateTime.now(),
                   );
 

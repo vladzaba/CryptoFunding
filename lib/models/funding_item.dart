@@ -7,6 +7,7 @@ class FundingItem {
   final num price;
   final String bscAddress;
   final String ethAddress;
+  final bool isActive;
   late DateTime whenAdded;
 
   FundingItem({
@@ -18,6 +19,7 @@ class FundingItem {
     required this.price,
     required this.bscAddress,
     required this.ethAddress,
+    required this.isActive,
     required this.whenAdded,
   });
 
@@ -31,6 +33,7 @@ class FundingItem {
       price: json['price'],
       bscAddress: json['bsc_address'],
       ethAddress: json['eth_address'],
+      isActive: json['is_active'],
       whenAdded: json['time'].toDate(),
     );
   }
@@ -45,6 +48,7 @@ class FundingItem {
       'price': price,
       'bsc_address': bscAddress,
       'eth_address': ethAddress,
+      'is_active': isActive,
       'time': whenAdded,
     };
   }
