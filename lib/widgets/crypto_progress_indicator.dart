@@ -60,7 +60,9 @@ class CryptoProgressIndicator extends StatelessWidget {
                 barRadius: const Radius.circular(12),
                 width: width,
                 lineHeight: 20.0,
-                percent: (percent / 100) < 1 ? percent / 100 : 1,
+                percent: ((percent / 100) < 1 && fundingItem.isActive)
+                    ? percent / 100
+                    : 1,
                 backgroundColor: Colors.grey,
                 center: fundingItem.isActive
                     ? Text('$percent%')

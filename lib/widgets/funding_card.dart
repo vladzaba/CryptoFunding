@@ -1,3 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:crypto_funding_app/widgets/shimmer_details.dart';
+
 import '../themes/text_styles.dart';
 
 import '../models/funding_item.dart';
@@ -51,7 +54,18 @@ class FundingCard extends StatelessWidget {
                   CircleAvatar(
                     radius: 48,
                     backgroundColor: Colors.transparent,
-                    backgroundImage: NetworkImage(fundingItem.image),
+                    child: ClipOval(
+                      child: CachedNetworkImage(
+                        height: 96,
+                        width: 96,
+                        fit: BoxFit.cover,
+                        fadeInDuration: Duration.zero,
+                        fadeOutDuration: Duration.zero,
+                        imageUrl: fundingItem.image,
+                        placeholder: (context, url) =>
+                            const ShimmerCircleAvatar(),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     width: 90,
