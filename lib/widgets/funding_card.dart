@@ -63,7 +63,7 @@ class FundingCard extends StatelessWidget {
                         fadeOutDuration: Duration.zero,
                         imageUrl: fundingItem.image,
                         placeholder: (context, url) =>
-                            const ShimmerCircleAvatar(),
+                            const ShimmerCircleAvatar(radius: 48),
                       ),
                     ),
                   ),
@@ -133,7 +133,18 @@ class FundingCardProfile extends StatelessWidget {
           child: ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.transparent,
-              backgroundImage: NetworkImage(fundingItem.image),
+              child: ClipOval(
+                child: CachedNetworkImage(
+                  height: 48,
+                  width: 48,
+                  fit: BoxFit.cover,
+                  fadeInDuration: Duration.zero,
+                  fadeOutDuration: Duration.zero,
+                  imageUrl: fundingItem.image,
+                  placeholder: (context, url) =>
+                      const ShimmerCircleAvatar(radius: 24),
+                ),
+              ),
             ),
             title: Text(
               fundingItem.name,

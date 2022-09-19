@@ -224,15 +224,20 @@ class ShimmerCryptoProgressIndicator extends StatelessWidget {
 }
 
 class ShimmerCircleAvatar extends StatelessWidget {
-  const ShimmerCircleAvatar({Key? key}) : super(key: key);
+  final double radius;
+
+  const ShimmerCircleAvatar({
+    Key? key,
+    required this.radius,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       baseColor: const Color.fromARGB(255, 86, 94, 103),
       highlightColor: const Color.fromARGB(255, 141, 147, 154),
-      child: const CircleAvatar(
-        radius: 48,
+      child: CircleAvatar(
+        radius: radius,
       ),
     );
   }
