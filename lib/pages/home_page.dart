@@ -61,10 +61,12 @@ class HomePage extends StatelessWidget {
                         const SizedBox(
                           height: 25,
                         ),
-                        FundingsListBuilder(
-                          fundingsList: finishedList,
-                          title: 'Finished',
-                        ),
+                        finishedList.isNotEmpty
+                            ? FundingsListBuilder(
+                                fundingsList: finishedList,
+                                title: 'Finished',
+                              )
+                            : const SizedBox.shrink(),
                       ],
                     ),
             ),
