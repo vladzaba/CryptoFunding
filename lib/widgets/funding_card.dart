@@ -1,5 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:crypto_funding_app/widgets/shimmer_details.dart';
+import 'cached_circle_avatar.dart';
 
 import '../themes/text_styles.dart';
 
@@ -51,21 +50,10 @@ class FundingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
+                  CachedCircleAvatar(
+                    size: 96,
                     radius: 48,
-                    backgroundColor: Colors.transparent,
-                    child: ClipOval(
-                      child: CachedNetworkImage(
-                        height: 96,
-                        width: 96,
-                        fit: BoxFit.cover,
-                        fadeInDuration: Duration.zero,
-                        fadeOutDuration: Duration.zero,
-                        imageUrl: fundingItem.image,
-                        placeholder: (context, url) =>
-                            const ShimmerCircleAvatar(radius: 48),
-                      ),
-                    ),
+                    image: fundingItem.image,
                   ),
                   const SizedBox(
                     width: 90,
@@ -131,20 +119,10 @@ class FundingCardProfile extends StatelessWidget {
             );
           },
           child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              child: ClipOval(
-                child: CachedNetworkImage(
-                  height: 48,
-                  width: 48,
-                  fit: BoxFit.cover,
-                  fadeInDuration: Duration.zero,
-                  fadeOutDuration: Duration.zero,
-                  imageUrl: fundingItem.image,
-                  placeholder: (context, url) =>
-                      const ShimmerCircleAvatar(radius: 24),
-                ),
-              ),
+            leading: CachedCircleAvatar(
+              size: 44,
+              radius: 22,
+              image: fundingItem.image,
             ),
             title: Text(
               fundingItem.name,

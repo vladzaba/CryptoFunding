@@ -1,7 +1,7 @@
-import '../models/funding_item.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+import '../models/funding_item.dart';
 import '../pages/item_details_page.dart';
 import '../themes/text_styles.dart';
 import 'funding_card.dart';

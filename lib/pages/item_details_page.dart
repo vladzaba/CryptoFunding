@@ -1,3 +1,5 @@
+import '../widgets/cached_circle_avatar.dart';
+
 import '../themes/text_styles.dart';
 import '../widgets/shimmer_details.dart';
 
@@ -28,9 +30,6 @@ class ItemDetailsPage extends StatefulWidget {
 }
 
 class _ItemDetailsPageState extends State<ItemDetailsPage> {
-  late double deviceHeight;
-  late double deviceWidth;
-
   List<Transaction> transactions = [];
 
   bool isLoading = false;
@@ -43,9 +42,6 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    deviceHeight = MediaQuery.of(context).size.height;
-    deviceWidth = MediaQuery.of(context).size.width;
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -61,6 +57,9 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
 
   Widget buildUI() {
     return Builder(builder: (context) {
+      double deviceHeight = MediaQuery.of(context).size.height;
+      double deviceWidth = MediaQuery.of(context).size.width;
+
       var fetchProvider = context.watch<CryptoFetchProvider>();
 
       return Scaffold(
@@ -106,11 +105,10 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                   ),
                                 );
                               },
-                              child: CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                backgroundImage:
-                                    NetworkImage(widget.fundingItem.image),
+                              child: CachedCircleAvatar(
+                                size: 128,
                                 radius: 64,
+                                image: widget.fundingItem.image,
                               ),
                             ),
                             const SizedBox(
