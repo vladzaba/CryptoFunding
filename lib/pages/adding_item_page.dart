@@ -243,8 +243,8 @@ class _AddingItemPageState extends State<AddingItemPage> {
 
                   final fundingItem = FundingItem(
                     id: id,
-                    name: titleController.text,
-                    description: descriptionController.text,
+                    name: titleController.text.trim(),
+                    description: descriptionController.text.trim(),
                     creator: firebaseAuth.currentUser!.email!,
                     image: imageURL!,
                     price: doubleWithoutDecimalToInt(
@@ -252,8 +252,8 @@ class _AddingItemPageState extends State<AddingItemPage> {
                         double.parse(priceController.text).toStringAsFixed(2),
                       ),
                     ),
-                    bscAddress: bscController.text,
-                    ethAddress: ethController.text,
+                    bscAddress: bscController.text.trim(),
+                    ethAddress: ethController.text.trim(),
                     isActive: true,
                     whenAdded: DateTime.now(),
                   );
@@ -264,9 +264,9 @@ class _AddingItemPageState extends State<AddingItemPage> {
 
                   db.getItems();
 
-                  buttonController.success();
-
                   Navigator.of(context).pop();
+
+                  buttonController.success();
                 },
               ),
             ],
