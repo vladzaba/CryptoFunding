@@ -1,8 +1,10 @@
+import 'package:crypto_funding_app/widgets/fundings_list_buider.dart';
+
 import '../themes/text_styles.dart';
 
 import '../services/authentication_service.dart';
 import '../widgets/custom_dialog.dart';
-import '../widgets/funding_card.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,8 +25,14 @@ class ProfilePage extends StatelessWidget {
 
     var db = context.watch<DatabaseProvider>();
 
-    List<FundingItem> fundingList = db.items.where((element) {
-      return element.creator == firebaseAuth.currentUser!.email;
+    List<FundingItem> userActiveItems = db.items.where((element) {
+      return (element.creator == firebaseAuth.currentUser!.email &&
+          element.isActive == true);
+    }).toList();
+
+    List<FundingItem> userFinishedItems = db.finishedItems.where((element) {
+      return (element.creator == firebaseAuth.currentUser!.email &&
+          element.isActive == false);
     }).toList();
 
     return Scaffold(
@@ -63,46 +71,27 @@ class ProfilePage extends StatelessWidget {
           },
         ),
       ),
-      body: fundingList.isNotEmpty
+      body: userActiveItems.isNotEmpty || userFinishedItems.isNotEmpty
           ? ListView(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Your Items',
-                    style: TextStyles.titleMedium,
-                  ),
-                ),
-                ListView.builder(
-                  itemCount: fundingList.length,
-                  itemBuilder: ((context, index) {
-                    return FundingCardProfile(
-                      fundingItem: fundingList[index],
-                      deleteFunction: () {
-                        return showDialog(
-                          context: context,
-                          builder: (context) {
-                            return CustomDialog(
-                              contentText: 'Are you sure you want to delete',
-                              itemName: '\n${fundingList[index].name}',
-                              actionText: 'Delete',
-                              onTapFunction: () {
-                                Navigator.of(context).pop();
-                                db.deleteItem(fundingList[index]);
-                                cloudStorage.deleteImageFromStorage(
-                                  auth.uid,
-                                  fundingList[index].id,
-                                );
-                              },
-                            );
-                          },
-                        );
-                      },
-                    );
-                  }),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                ),
+                userActiveItems.isNotEmpty
+                    ? ProfileFundingsListBuilder(
+                        fundingsList: userActiveItems,
+                        title: 'Your Active Fundings',
+                        cloudStorage: cloudStorage,
+                        auth: auth,
+                        db: db,
+                      )
+                    : const SizedBox.shrink(),
+                userFinishedItems.isNotEmpty
+                    ? ProfileFundingsListBuilder(
+                        fundingsList: userFinishedItems,
+                        title: 'Your Finished Fundings',
+                        cloudStorage: cloudStorage,
+                        auth: auth,
+                        db: db,
+                      )
+                    : const SizedBox.shrink(),
               ],
             )
           : const Center(
