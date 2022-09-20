@@ -46,7 +46,6 @@ dependencies:
 
   # Some UI things 
   rounded_loading_button: ^2.1.0
-  glassmorphism: ^3.0.0
   percent_indicator: ^4.2.2
   another_flushbar: ^1.10.29
   timeago: ^3.3.0

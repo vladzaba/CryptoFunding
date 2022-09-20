@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 
 class GlassContainer extends StatelessWidget {
   final double width;
@@ -15,29 +14,27 @@ class GlassContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassmorphicContainer(
-      width: width,
+    return Container(
       height: height,
-      borderRadius: 20,
-      blur: 20,
+      width: width,
       alignment: Alignment.bottomCenter,
-      border: 2,
-      linearGradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          const Color(0xFFffffff).withOpacity(0.1),
-          const Color(0xFFFFFFFF).withOpacity(0.05),
-        ],
-        stops: const [0.1, 1],
-      ),
-      borderGradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          const Color(0xFFffffff).withOpacity(0.5),
-          const Color((0xFFFFFFFF)).withOpacity(0.5),
-        ],
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            const Color(0xFFffffff).withOpacity(0.1),
+            const Color(0xFFFFFFFF).withOpacity(0.05),
+          ],
+          stops: const [0.1, 1],
+        ),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.5),
+          width: 2.5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(20),
+        ),
       ),
       child: child,
     );

@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/funding_item.dart';
 import 'package:flutter/material.dart';
+
+import '../models/funding_item.dart';
 
 class DatabaseProvider extends ChangeNotifier {
   late final FirebaseFirestore db;
