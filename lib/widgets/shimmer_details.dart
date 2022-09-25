@@ -8,144 +8,148 @@ class ShimmerDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-      child: Shimmer.fromColors(
-        baseColor: const Color(0xff263742),
-        highlightColor: const Color.fromARGB(255, 55, 76, 90),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          child: Shimmer.fromColors(
+            baseColor: const Color(0xff263742),
+            highlightColor: const Color.fromARGB(255, 55, 76, 90),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(
-                  radius: 64,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: 150,
-                      height: 30,
-                      color: Colors.white,
+                    const CircleAvatar(
+                      radius: 64,
                     ),
                     const SizedBox(
-                      height: 5,
+                      width: 10,
                     ),
-                    Container(
-                      width: 80,
-                      height: 15,
-                      color: Colors.white,
+                    Column(
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 30,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          width: 80,
+                          height: 15,
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: 170,
-              height: 30,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Container(
-              width: 380,
-              height: 15,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: 170,
-              height: 30,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Container(
-              width: 380,
-              height: 15,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: 110,
-              height: 30,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Center(
-              child: Container(
-                width: deviceWidth * 0.92,
-                height: 20,
-                decoration: const BoxDecoration(
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: 170,
+                  height: 30,
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(14),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  width: 380,
+                  height: 15,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: 170,
+                  height: 30,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  width: 380,
+                  height: 15,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: 110,
+                  height: 30,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Center(
+                  child: Container(
+                    width: deviceWidth * 0.92,
+                    height: 20,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(14),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: 250,
+                  height: 15,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: 250,
+                  height: 15,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: 170,
+                  height: 15,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Container(
+                  width: 160,
+                  height: 30,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                shimmerTransaction(),
+                const SizedBox(
+                  height: 8,
+                ),
+                shimmerTransaction(),
+                const SizedBox(
+                  height: 8,
+                ),
+                shimmerTransaction(),
+              ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: 250,
-              height: 15,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: 250,
-              height: 15,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: 170,
-              height: 15,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Container(
-              width: 160,
-              height: 30,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            shimmerTransaction(),
-            const SizedBox(
-              height: 8,
-            ),
-            shimmerTransaction(),
-            const SizedBox(
-              height: 8,
-            ),
-            shimmerTransaction(),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 
