@@ -40,7 +40,7 @@ https://testnet.dexsport.io/faucet.html
 |  --- |  ---    |   ---    |
 |<img src="screenshots/gif.gif" width="250">|<img src="screenshots/home.png" width="250">|<img src="screenshots/details.png" width="250">|
 
-| Profile | Funding adding |
+| Profile | Adding Item |
 |  --- |  ---    |
 |<img src="screenshots/profile.png" width="250">|<img src="screenshots/adding.png" width="250">|
 
