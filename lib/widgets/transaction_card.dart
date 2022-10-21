@@ -23,6 +23,9 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     double value = double.parse(transaction.value) / 1000000000000000000;
 
     return ZoomTapAnimation(
@@ -46,8 +49,8 @@ class TransactionCard extends StatelessWidget {
               ],
             ),
             GlassContainer(
-              width: 500,
-              height: 75,
+              width: deviceWidth * 0.96,
+              height: deviceHeight * 0.085,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -129,7 +132,7 @@ class NoTransactions extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SizedBox(
       height: 200,
-      child:  Center(
+      child: Center(
         child: Text(
           'No transations were found',
           style: TextStyles.bodyMedium,

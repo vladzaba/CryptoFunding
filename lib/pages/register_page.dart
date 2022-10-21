@@ -8,22 +8,29 @@ import '../widgets/animated_button.dart';
 import '../widgets/custom_form_field.dart';
 import '../widgets/custom_snackbar.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final formKey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController repeatPasswordController =
+      TextEditingController();
+
+  final RoundedLoadingButtonController buttonController =
+      RoundedLoadingButtonController();
+
+  final AuthenticationService auth = AuthenticationService();
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController repeatPasswordController =
-        TextEditingController();
-
-    final RoundedLoadingButtonController buttonController =
-        RoundedLoadingButtonController();
-
-    final AuthenticationService auth = AuthenticationService();
+    double deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -60,8 +67,8 @@ class RegisterPage extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: deviceHeight * 0.02,
               ),
               CustomFormField(
                 controller: passwordController,
@@ -75,8 +82,8 @@ class RegisterPage extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: deviceHeight * 0.035,
               ),
               CustomFormField(
                 controller: repeatPasswordController,
@@ -91,8 +98,8 @@ class RegisterPage extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: deviceHeight * 0.035,
               ),
               AnimatedButton(
                 text: 'Sign Up',
@@ -123,8 +130,8 @@ class RegisterPage extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(
-                height: 60,
+              SizedBox(
+                height: deviceHeight * 0.06,
               ),
               GestureDetector(
                 onTap: () {
@@ -136,8 +143,8 @@ class RegisterPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(
-                height: 140,
+              SizedBox(
+                height: deviceHeight * 0.15,
               ),
             ],
           ),

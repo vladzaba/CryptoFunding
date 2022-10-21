@@ -57,7 +57,6 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
 
   Widget buildUI() {
     return Builder(builder: (context) {
-      double deviceHeight = MediaQuery.of(context).size.height;
       double deviceWidth = MediaQuery.of(context).size.width;
 
       var fetchProvider = context.watch<CryptoFetchProvider>();

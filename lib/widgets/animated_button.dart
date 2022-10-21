@@ -17,9 +17,12 @@ class AnimatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return RoundedLoadingButton(
-      height: 50,
-      width: 350,
+      height: deviceHeight * 0.055,
+      width: deviceWidth * 0.80,
       color: const Color(0xFF59b7b9),
       borderRadius: 5.0,
       controller: buttonController,

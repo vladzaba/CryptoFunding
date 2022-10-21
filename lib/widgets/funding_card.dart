@@ -21,6 +21,9 @@ class FundingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -44,7 +47,7 @@ class FundingCard extends StatelessWidget {
           padding: const EdgeInsets.only(left: 2.0, right: 2.0, bottom: 8.0),
           child: GlassContainer(
             width: double.infinity,
-            height: 150,
+            height: deviceHeight * 0.165,
             child: Center(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +79,7 @@ class FundingCard extends StatelessWidget {
                         height: 10,
                       ),
                       CryptoProgressIndicator(
-                        width: 180,
+                        width: deviceWidth * 0.43,
                         fundingItem: fundingItem,
                         baseColor: const Color.fromARGB(255, 86, 94, 103),
                         highlightColor:

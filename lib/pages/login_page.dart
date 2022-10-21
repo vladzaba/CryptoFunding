@@ -7,20 +7,27 @@ import '../widgets/custom_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final formKey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final RoundedLoadingButtonController buttonController =
+      RoundedLoadingButtonController();
+
+  final AuthenticationService auth = AuthenticationService();
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
-    final RoundedLoadingButtonController buttonController =
-        RoundedLoadingButtonController();
-
-    final AuthenticationService auth = AuthenticationService();
+    double deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -40,8 +47,8 @@ class LoginPage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyles.titleLarge,
               ),
-              const SizedBox(
-                height: 50,
+              SizedBox(
+                height: deviceHeight * 0.06,
               ),
               CustomFormField(
                 controller: emailController,
@@ -57,8 +64,8 @@ class LoginPage extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: deviceHeight * 0.02,
               ),
               CustomFormField(
                 controller: passwordController,
@@ -72,8 +79,8 @@ class LoginPage extends StatelessWidget {
                   return null;
                 },
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: deviceHeight * 0.035,
               ),
               AnimatedButton(
                 text: 'Login',
@@ -105,8 +112,8 @@ class LoginPage extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(
-                height: 60,
+              SizedBox(
+                height: deviceHeight * 0.06,
               ),
               GestureDetector(
                 onTap: () {
@@ -118,8 +125,8 @@ class LoginPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(
-                height: 140,
+              SizedBox(
+                height: deviceHeight * 0.15,
               ),
             ],
           ),
