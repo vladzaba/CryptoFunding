@@ -3,13 +3,13 @@
 ETH and BNB crowdfunding app.
 
 ## ⚠️ Disclaimer ⚠️
-CryptoFunding uses ONLY testnet Rinkeby and BSC Testnet chains.
+CryptoFunding uses ONLY testnet Goerli and BSC testnet chains.
 
 ### Rinkeby:
 
-https://www.rinkeby.io/
+https://goerli.net
 
-https://rinkeby.etherscan.io
+https://goerli.etherscan.io
 
 ### BSC Testnet:
 
@@ -19,11 +19,13 @@ https://testnet.bscscan.com
 
 ## 💰 Where can I get testnet tokens? 💰
 You can claim testnet tokens for free on the links below.
-### Rinkeby:
+### Goerli:
 
-https://faucet.rinkeby.io
+https://goerlifaucet.com
 
-https://rinkebyfaucet.io
+https://goerli-faucet.pk910.de
+
+https://testnet.help/en/ethfaucet/goerli
 
 ### BSC Testnet:
 
