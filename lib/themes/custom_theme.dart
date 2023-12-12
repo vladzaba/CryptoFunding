@@ -6,6 +6,7 @@ class CustomTheme {
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(color: Colors.white),
       backgroundColor: Color(0xff263742),
       centerTitle: true,
       elevation: 0.0,

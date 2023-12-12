@@ -73,7 +73,10 @@ class _AddingItemPageState extends State<AddingItemPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adding Item'),
+        title: const Text(
+          'Adding Item',
+          style: TextStyle(color: Colors.white),
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {

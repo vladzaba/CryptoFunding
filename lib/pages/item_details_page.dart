@@ -245,7 +245,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
     });
 
     final String ethUrl =
-        'https://api-rinkeby.etherscan.io/api?module=account&action=txlist&address=${widget.fundingItem.ethAddress}&startblock=0&endblock=99999999&sort=asc&apikey=NWK7JXSYT1P6DTCV75JV5GXYBN8TK8MF5B';
+        'https://api-goerli.etherscan.io/api?module=account&action=txlist&address=${widget.fundingItem.ethAddress}&startblock=0&endblock=99999999&sort=asc&apikey=NWK7JXSYT1P6DTCV75JV5GXYBN8TK8MF5B';
     final String bscUrl =
         'https://api-testnet.bscscan.com/api?module=account&action=txlist&address=${widget.fundingItem.bscAddress}&startblock=1&endblock=99999999&page=1&offset=10&sort=asc&apikey=S73BCVF6SCKIWDXMWAMAIUYJH1R2DXBH83';
 

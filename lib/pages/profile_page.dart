@@ -38,7 +38,10 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xff1e2c37),
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: Colors.white),
+        ),
         actions: [
           IconButton(
             onPressed: () async {

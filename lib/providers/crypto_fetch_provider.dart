@@ -65,7 +65,7 @@ class CryptoFetchProvider extends ChangeNotifier {
 
     // Getting ETH wallet ETH balance
     String urlETHBal =
-        'https://api-rinkeby.etherscan.io/api?module=account&action=balance&address=$ethAddress&tag=latest&apikey=$ethApiKey';
+        'https://api-goerli.etherscan.io/api?module=account&action=balance&address=$ethAddress&tag=latest&apikey=$ethApiKey';
 
     var responceETHBal = await http.get(Uri.parse(urlETHBal));
     var dataETHBal = json.decode(responceETHBal.body);
@@ -76,23 +76,23 @@ class CryptoFetchProvider extends ChangeNotifier {
 
     // Getting BNB price
     String urlBNBPrice =
-        'https://api.dex.guru/v1/tokens/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c-bsc';
+        'https://api.coinbase.com/v2/exchange-rates?currency=bnb';
 
     var responceBNBPrice = await http.get(Uri.parse(urlBNBPrice));
     var dataBNBPrice = json.decode(responceBNBPrice.body);
 
-    String dataStrBNBPrice = dataBNBPrice['priceUSD'].toString();
+    String dataStrBNBPrice = dataBNBPrice['data']['rates']['USD'].toString();
 
     _bnbPrice = double.parse(dataStrBNBPrice);
 
     // Getting ETH price
     String urlETHPrice =
-        'https://api.dex.guru/v1/tokens/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2-eth';
+        'https://api.coinbase.com/v2/exchange-rates?currency=eth';
 
     var responceETHPrice = await http.get(Uri.parse(urlETHPrice));
     var dataETHPrice = json.decode(responceETHPrice.body);
 
-    String dataStrETHPrice = dataETHPrice['priceUSD'].toString();
+    String dataStrETHPrice = dataETHPrice['data']['rates']['USD'].toString();
 
     _ethPrice = double.parse(dataStrETHPrice);
 

@@ -21,7 +21,10 @@ class HomePage extends StatelessWidget {
         headerSliverBuilder: ((context, innerBoxIsScrolled) {
           return [
             SliverAppBar(
-              title: const Text('Active'),
+              title: const Text(
+                'Active',
+                style: TextStyle(color: Colors.white),
+              ),
               leading: IconButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed('/profile');
