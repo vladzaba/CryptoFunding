@@ -5,7 +5,7 @@ ETH and BNB crowdfunding app.
 ## ⚠️ Disclaimer ⚠️
 CryptoFunding uses ONLY testnet Goerli and BSC testnet chains.
 
-### Rinkeby:
+### Goerli:
 
 https://goerli.net
 
